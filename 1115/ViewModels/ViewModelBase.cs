@@ -9,13 +9,13 @@ using System.Windows;
 
 namespace _1115.ViewModels
 {
-    internal class ViewModelBase:DependencyObject,  INotifyPropertyChanged
+    internal class ViewModelBase : DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

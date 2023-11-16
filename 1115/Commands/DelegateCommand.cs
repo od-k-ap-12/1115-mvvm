@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace _1115
+namespace _1115.Commands
 {
-    internal class DelegateCommand
+    internal class DelegateCommand : ICommand
     {
-        public DelegateCommand(Action<object?> execute, Predicate<object?> canExecute)
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -17,7 +17,7 @@ namespace _1115
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             if (_canExecute != null)
             {
@@ -26,18 +26,18 @@ namespace _1115
             return true;
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             _execute(parameter);
         }
 
-        public event EventHandler? CanExecuteChanged
+        public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        Action<object?> _execute;
-        Predicate<object?> _canExecute;
+        Action<object> _execute;
+        Predicate<object> _canExecute;
     }
 }

@@ -5,20 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1115"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="300">
     <Grid>
         <StackPanel>
-            <TextBlock Text="Name:"/>
+            <TextBlock Text="Name"/>
             <TextBox Text="{Binding Name}"/>
-            <TextBlock Text="Surname:"/>
+
+            <TextBlock Text="Surname"/>
             <TextBox Text="{Binding Surname}"/>
+
+            <TextBlock Text="Phone"/>
+            <TextBox x:Name="tbname" Text="{Binding Phone}"/>
+            
+            <TextBlock Text="Biography"/>
+            <TextBox Text="{Binding Bio}"/>
+
             <WrapPanel>
                 <CheckBox Content="English" IsChecked="{Binding IsEnglish}"/>
+                <CheckBox Content="German" IsChecked="{Binding IsGerman}"/>
             </WrapPanel>
-            <Button Content="Save"/>
-            <Button Content="Clear"/>
-            <ComboBox ItemSource="{Binding}" SelectedItem="{Binding Summaries}"/>
-            <Button Content="Show Info"/>
+
+            <Button Content="Save" Command="{Binding SaveCommand}"/>
+            <Button Content="Clear" Command="{Binding ClearCommand}"/>
+
+            <ComboBox ItemsSource="{Binding Summaries}" SelectedItem="{Binding SelectedSummaryItem}"/>
+
+            <Button Content="Show info" Command="{Binding ShowCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
